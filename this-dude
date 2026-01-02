@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renaissance Art Gallery | Masterpieces of the Golden Age</title>
+    <meta name="description" content="Explore the sophistication and beauty of Renaissance paintings from masters like Da Vinci, Michelangelo, and Raphael. A curated digital gallery of timeless art.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'renaissance-gold': '#c9a96e',
+                        'renaissance-maroon': '#8b4513',
+                        'renaissance-velvet': '#2c1810',
+                        'renaissance-cream': '#f5f1e8',
+                        'renaissance-sage': '#8a9a5b',
+                        'gallery-bg': '#f8f5f0'
+                    },
+                    fontFamily: {
+                        'serif-elegant': ['Crimson Pro', 'Georgia', 'serif'],
+                        'display-elegant': ['Playfair Display', 'Times New Roman', 'serif']
+                    },
+                    spacing: {
+                        'gallery': '2.5rem',
+                        'section': '5rem'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f8f5f0;
+        }
+        .gold-border {
+            border-color: #c9a96e;
+        }
+        .text-shadow {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .painting-frame {
+            border: 12px solid #2c1810;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .painting-frame::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border: 2px solid #c9a96e;
+            z-index: -1;
+        }
+        .ornament {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,10 Q25,0 50,10 T100,10' stroke='%23c9a96e' fill='none' stroke-width='2'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            height: 20px;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gallery-bg font-serif-elegant text-gray-800">
+    <!-- Header with Sophisticated Navigation -->
+    <header class="bg-renaissance-velvet text-renaissance-cream sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center py-6">
+                <div class="mb-4 md:mb-0">
+                    <h1 class="text-3xl md:text-4xl font-display-elegant font-bold tracking-wider">
+                        <span class="text-renaissance-gold">Renaissance</span> Art Gallery
+                    </h1>
+                    <p class="text-sm mt-1 text-renaissance-cream/80 italic">Timeless Masterpieces • 14th–17th Century</p>
+                </div>
+                
+                <nav class="w-full md:w-auto">
+                    <ul class="flex flex-wrap justify-center space-x-1 md:space-x-8">
+                        <li><a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-renaissance-gold/20 transition-colors duration-300" data-section="home">Gallery</a></li>
+                        <li><a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-renaissance-gold/20 transition-colors duration-300" data-section="masters">Masters</a></li>
+                        <li><a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-renaissance-gold/20 transition-colors duration-300" data-section="techniques">Techniques</a></li>
+                        <li><a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-renaissance-gold/20 transition-colors duration-300" data-section="timeline">Timeline</a></li>
+                        <li><a href="#" class="nav-link px-4 py-2 rounded-lg hover:bg-renaissance-gold/20 transition-colors duration-300" data-section="visit">Visit</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="ornament"></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="section-active py-12 md:py-20 animate-fade-in">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-block mb-6">
+                    <div class="w-24 h-1 bg-renaissance-gold mx-auto mb-4"></div>
+                    <h2 class="text-4xl md:text-5xl font-display-elegant font-bold text-renaissance-velvet mb-4">
+                        The <span class="text-renaissance-maroon">Golden Age</span> of Art
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        Experience the sophistication of Renaissance painting, where art, science, and humanism converged to create some of history's most enduring masterpieces.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Featured Paintings Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+                <div class="group animate-slide-up">
+                    <div class="painting-frame overflow-hidden bg-white mb-6">
+                        <img 
+                            src="https://picsum.photos/500/650?random=101" 
+                            alt="Mona Lisa by Leonardo da Vinci - The most famous portrait in history with enigmatic smile" 
+                            class="w-full h-64 md:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-display-elegant font-semibold text-renaissance-velvet mb-2">Mona Lisa</h3>
+                        <p class="text-renaissance-maroon font-medium mb-2">Leonardo da Vinci • c. 1503–1506</p>
+                        <p class="text-gray-600">The archetypal masterpiece of the Italian Renaissance, renowned for its subject's enigmatic expression.</p>
+                    </div>
+                </div>
+
+                <div class="group animate-slide-up" style="animation-delay: 0.2s">
+                    <div class="painting-frame overflow-hidden bg-white mb-6">
+                        <img 
+                            src="https://picsum.photos/500/650?random=102" 
+                            alt="The Birth of Venus by Sandro Botticelli - Goddess Venus emerging from sea on a shell" 
+                            class="w-full h-64 md:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-display-elegant font-semibold text-renaissance-velvet mb-2">The Birth of Venus</h3>
+                        <p class="text-renaissance-maroon font-medium mb-2">Sandro Botticelli • c. 1484–1486</p>
+                        <p class="text-gray-600">A landmark of early Renaissance, depicting the goddess Venus arriving at the shore after her birth.</p>
+                    </div>
+                </div>
+
+                <div class="group animate-slide-up" style="animation-delay: 0.4s">
+                    <div class="painting-frame overflow-hidden bg-white mb-6">
+                        <img 
+                            src="https://picsum.photos/500/650?random=103" 
+                            alt="The School of Athens by Raphael - Gathering of great philosophers in classical architecture" 
+                            class="w-full h-64 md:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-display-elegant font-semibold text-renaissance-velvet mb-2">The School of Athens</h3>
+                        <p class="text-renaissance-maroon font-medium mb-2">Raphael • 1509–1511</p>
+                        <p class="text-gray-600">A fresco representing Philosophy, featuring Plato, Aristotle, and other ancient philosophers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Renaissance Masters Section -->
+    <section id="masters" class="py-16 bg-renaissance-cream hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-display-elegant font-bold text-renaissance-velvet mb-4">The Great Masters</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Visionary artists who defined the Renaissance through innovation and technical mastery.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-lift">
+                    <div class="h-48 overflow-hidden">
+                        <img 
+                            src="https://picsum.photos/400/300?random=201" 
+                            alt="Leonardo da Vinci portrait - Renaissance polymath and artist" 
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-velvet mb-2">Leonardo da Vinci</h3>
+                        <p class="text-renaissance-gold font-medium mb-3">1452–1519 • Italian</p>
+                        <p class="text-gray-600 mb-4">The quintessential Renaissance man, master of sfumato and anatomical precision.</p>
+                        <div class="text-sm text-gray-500">
+                            <p class="mb-1"><i class="fas fa-palette text-renaissance-gold mr-2"></i>Notable: Mona Lisa, The Last Supper</p>
+                            <p><i class="fas fa-lightbulb text-renaissance-gold mr-2"></i>Innovation: Sfumato, Chiaroscuro</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-lift">
+                    <div class="h-48 overflow-hidden">
+                        <img 
+                            src="https://picsum.photos/400/300?random=202" 
+                            alt="Michelangelo Buonarroti portrait - Sculptor and painter of the High Renaissance" 
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-velvet mb-2">Michelangelo</h3>
+                        <p class="text-renaissance-gold font-medium mb-3">1475–1564 • Italian</p>
+                        <p class="text-gray-600 mb-4">Master of human anatomy and dramatic composition in both sculpture and painting.</p>
+                        <div class="text-sm text-gray-500">
+                            <p class="mb-1"><i class="fas fa-palette text-renaissance-gold mr-2"></i>Notable: Sistine Chapel, David</p>
+                            <p><i class="fas fa-lightbulb text-renaissance-gold mr-2"></i>Innovation: Terribilità, Foreshortening</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-lift">
+                    <div class="h-48 overflow-hidden">
+                        <img 
+                            src="https://picsum.photos/400/300?random=203" 
+                            alt="Raphael Sanzio portrait - Master of harmony and composition" 
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-velvet mb-2">Raphael</h3>
+                        <p class="text-renaissance-gold font-medium mb-3">1483–1520 • Italian</p>
+                        <p class="text-gray-600 mb-4">Known for perfect harmony, clarity of form, and visual achievement of Neoplatonic ideal.</p>
+                        <div class="text-sm text-gray-500">
+                            <p class="mb-1"><i class="fas fa-palette text-renaissance-gold mr-2"></i>Notable: School of Athens, Sistine Madonna</p>
+                            <p><i class="fas fa-lightbulb text-renaissance-gold mr-2"></i>Innovation: Idealized Beauty, Composition</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-lift">
+                    <div class="h-48 overflow-hidden">
+                        <img 
+                            src="https://picsum.photos/400/300?random=204" 
+                            alt="Titian portrait - Master of color and Venetian Renaissance" 
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-velvet mb-2">Titian</h3>
+                        <p class="text-renaissance-gold font-medium mb-3">c. 1488–1576 • Venetian</p>
+                        <p class="text-gray-600 mb-4">The greatest Venetian artist of the Renaissance, master of color and atmospheric effects.</p>
+                        <div class="text-sm text-gray-500">
+                            <p class="mb-1"><i class="fas fa-palette text-renaissance-gold mr-2"></i>Notable: Assumption, Venus of Urbino</p>
+                            <p><i class="fas fa-lightbulb text-renaissance-gold mr-2"></i>Innovation: Colorito, Loose Brushwork</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Techniques Section -->
+    <section id="techniques" class="py-16 bg-white hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-display-elegant font-bold text-renaissance-velvet mb-4">Revolutionary Techniques</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Innovative methods that transformed artistic expression during the Renaissance.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-maroon mb-4 flex items-center">
+                            <i class="fas fa-eye mr-3 text-renaissance-gold"></i>Linear Perspective
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            Developed by Filippo Brunelleschi, linear perspective created the illusion of depth on a flat surface using converging lines to a vanishing point.
+                        </p>
+                        <div class="bg-renaissance-cream p-4 rounded-lg border-l-4 border-renaissance-gold">
+                            <p class="italic text-gray-600">"Perspective is to painting what the bridle is to the horse, the rudder to a ship." – Leonardo da Vinci</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-maroon mb-4 flex items-center">
+                            <i class="fas fa-sun mr-3 text-renaissance-gold"></i>Chiaroscuro
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            The use of strong contrasts between light and dark to achieve a sense of volume and three-dimensionality in painting.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-maroon mb-4 flex items-center">
+                            <i class="fas fa-cloud mr-3 text-renaissance-gold"></i>Sfumato
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Leonardo da Vinci's technique of blending colors and tones so subtly that they appear to melt into one another without transitions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="painting-frame">
+                        <img 
+                            src="https://picsum.photos/600/450?random=301" 
+                            alt="Demonstration of Renaissance painting techniques showing perspective and lighting" 
+                            class="w-full rounded"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-renaissance-velvet text-renaissance-cream p-6 rounded-lg shadow-xl max-w-xs">
+                        <h4 class="text-xl font-display-elegant font-bold mb-2">Technical Innovation</h4>
+                        <p class="text-sm">Renaissance artists pioneered oil painting, allowing for greater detail, richer colors, and longer working time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-16 bg-renaissance-cream hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-display-elegant font-bold text-renaissance-velvet mb-4">Renaissance Timeline</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">The evolution of Renaissance art across three centuries of innovation.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-renaissance-gold hidden md:block"></div>
+
+                <!-- Timeline items -->
+                <div class="space-y-12">
+                    <div class="timeline-item flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <h3 class="text-2xl font-display-elegant font-bold text-renaissance-maroon mb-2">Early Renaissance</h3>
+                                <p class="text-renaissance-gold font-medium mb-3">c. 1400–1490</p>
+                                <p class="text-gray-700">Characterized by the rediscovery of classical antiquity, development of linear perspective, and emphasis on humanism.</p>
+                                <div class="mt-4">
+                                    <span class="inline-block bg-renaissance-cream text-renaissance-velvet px-3 py-1 rounded-full text-sm mr-2">Giotto</span>
+                                    <span class="inline-block bg-renaissance-cream text-renaissance-velvet px-3 py-1 rounded-full text-sm mr-2">Masaccio</span>
+                                    <span class="inline-block bg-renaissance-cream text-renaissance-velvet px-3 py-1 rounded-full text-sm">Botticelli</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="timeline-dot w-8 h-8 bg-renaissance-gold rounded-full border-4 border-white shadow-lg mx-auto"></div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 order-2 md:order-1">
+                            <div class="timeline-dot w-8 h-8 bg-renaissance-gold rounded-full border-4 border-white shadow-lg mx-auto"></div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 order-1 md:order-2 mb-4 md:mb-0">
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <h3 class="text-2xl font-display-elegant font-bold text-renaissance-maroon mb-2">High Renaissance</h3>
+                                <p class="text-renaissance-gold font-medium mb-3">c. 1490–1527</p>
+                                <p class="text-gray-700">The peak of Renaissance art, marked by harmony, balance, and the idealization of beauty. Centered in Rome and Florence.</p>
+                                <div class="mt-4">
+                                    <span class="inline-block bg-renaissance-cream text-renaissance-velvet px-3 py-1 rounded-full text-sm mr-2">Da Vinci</span>
+                                    <span class="inline-block bg-renaissance-cream text-renaissance-velvet px-3 py-1 rounded-full text-sm mr-2">Michelangelo</span>
+                                    <span class="inline-block bg-renaissance-cream text-renaissance-velvet px-3 py-1 rounded-full text-sm">Raphael</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right mb-4 md:mb-0">
+                            <div class="bg-white p-6 rounded-lg shadow-lg">
+                                <h3 class="text-2xl font-display-elegant font-bold text-renaissance-maroon mb-2">Late Renaissance & Mannerism</h3>
+                                <p class="text-renaissance-gold font-medium mb-3">c. 1520–1600</p>
+                                <p class="text-gray-700">Characterized by artificiality, elegance, and emotional intensity, moving away from classical balance toward more expressive forms.</p>
+                                <div class="mt-4">
+                                    <span class="inline-block bg-renaissance-cream text-renaissance-velvet px-3 py-1 rounded-full text-sm mr-2">Titian</span>
+                                    <span class="inline-block bg-renaissance-cream text-renaissance-velvet px-3 py-1 rounded-full text-sm mr-2">Tintoretto</span>
+                                    <span class="inline-block bg-renaissance-cream text-renaissance-velvet px-3 py-1 rounded-full text-sm">El Greco</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="timeline-dot w-8 h-8 bg-renaissance-gold rounded-full border-4 border-white shadow-lg mx-auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Section -->
+    <section id="visit" class="py-16 bg-white hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-display-elegant font-bold text-renaissance-velvet mb-4">Experience Renaissance Art</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Plan your visit to see these masterpieces in person at museums worldwide.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="bg-renaissance-cream rounded-lg overflow-hidden shadow-lg hover-lift">
+                    <div class="h-48 overflow-hidden">
+                        <img 
+                            src="https://picsum.photos/500/300?random=401" 
+                            alt="Uffizi Gallery in Florence, Italy - Renaissance art museum" 
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-velvet mb-2">Uffizi Gallery</h3>
+                        <p class="text-renaissance-gold font-medium mb-3">Florence, Italy</p>
+                        <p class="text-gray-700 mb-4">Home to the world's finest collection of Italian Renaissance art, including works by Botticelli, Leonardo, and Michelangelo.</p>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-star text-renaissance-gold mr-2"></i>
+                            <span class="font-medium">Must See:</span>
+                            <span class="ml-2">The Birth of Venus</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-renaissance-cream rounded-lg overflow-hidden shadow-lg hover-lift">
+                    <div class="h-48 overflow-hidden">
+                        <img 
+                            src="https://picsum.photos/500/300?random=402" 
+                            alt="The Louvre Museum in Paris, France - World's largest art museum" 
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-velvet mb-2">The Louvre</h3>
+                        <p class="text-renaissance-gold font-medium mb-3">Paris, France</p>
+                        <p class="text-gray-700 mb-4">The world's largest art museum, housing Leonardo da Vinci's Mona Lisa and numerous other Renaissance masterpieces.</p>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-star text-renaissance-gold mr-2"></i>
+                            <span class="font-medium">Must See:</span>
+                            <span class="ml-2">Mona Lisa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-renaissance-cream rounded-lg overflow-hidden shadow-lg hover-lift">
+                    <div class="h-48 overflow-hidden">
+                        <img 
+                            src="https://picsum.photos/500/300?random=403" 
+                            alt="Vatican Museums in Vatican City - Sistine Chapel and Raphael Rooms" 
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-velvet mb-2">Vatican Museums</h3>
+                        <p class="text-renaissance-gold font-medium mb-3">Vatican City</p>
+                        <p class="text-gray-700 mb-4">Contains Michelangelo's Sistine Chapel ceiling and Raphael's Stanze della Segnatura, including The School of Athens.</p>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-star text-renaissance-gold mr-2"></i>
+                            <span class="font-medium">Must See:</span>
+                            <span class="ml-2">Sistine Chapel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Subscription -->
+            <div class="mt-16 bg-renaissance-velvet rounded-2xl p-8 md:p-12 text-center text-renaissance-cream">
+                <h3 class="text-3xl font-display-elegant font-bold mb-4">Stay Connected with Renaissance Art</h3>
+                <p class="text-xl mb-8 max-w-2xl mx-auto">Subscribe to our newsletter for monthly features on Renaissance masterpieces, artist spotlights, and exhibition updates.</p>
+                
+                <form id="newsletter-form" class="max-w-md mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input 
+                            type="email" 
+                            placeholder="Your email address" 
+                            class="flex-grow px-6 py-4 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-renaissance-gold"
+                            required
+                        >
+                        <button 
+                            type="submit" 
+                            class="bg-renaissance-gold text-renaissance-velvet font-bold px-8 py-4 rounded-lg hover:bg-renaissance-gold/90 transition-colors duration-300"
+                        >
+                            Subscribe
+                        </button>
+                    </div>
+                    <p class="text-sm mt-4 text-renaissance-cream/70">We respect your privacy. Unsubscribe at any time.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-renaissance-velvet text-renaissance-cream py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-display-elegant font-bold mb-4">Renaissance Art Gallery</h3>
+                    <p class="text-renaissance-cream/80 mb-4">A digital exhibition celebrating the sophistication and beauty of Renaissance painting.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-renaissance-cream hover:text-renaissance-gold transition-colors duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-renaissance-cream hover:text-renaissance-gold transition-colors duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-renaissance-cream hover:text-renaissance-gold transition-colors duration-300">
+                            <i class="fab fa-pinterest text-xl"></i>
+                        </a>
+                        <a href="#" class="text-renaissance-cream hover:text-renaissance-gold transition-colors duration-300">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-display-elegant font-bold mb-4">Explore</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="nav-link hover:text-renaissance-gold transition-colors duration-300">Paintings by Period</a></li>
+                        <li><a href="#" class="nav-link hover:text-renaissance-gold transition-colors duration-300">Artist Biographies</a></li>
+                        <li><a href="#" class="nav-link hover:text-renaissance-gold transition-colors duration-300">Painting Techniques</a></li>
+                        <li><a href="#" class="nav-link hover:text-renaissance-gold transition-colors duration-300">Art Restoration</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-display-elegant font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="nav-link hover:text-renaissance-gold transition-colors duration-300">Glossary of Terms</a></li>
+                        <li><a href="#" class="nav-link hover:text-renaissance-gold transition-colors duration-300">Reading List</a></li>
+                        <li><a href="#" class="nav-link hover:text-renaissance-gold transition-colors duration-300">Educational Materials</a></li>
+                        <li><a href="#" class="nav-link hover:text-renaissance-gold transition-colors duration-300">Research Papers</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xl font-display-elegant font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-renaissance-gold mr-3"></i>
+                            <span>info@renaissancegallery.org</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-renaissance-gold mr-3"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-renaissance-gold mr-3"></i>
+                            <span>Florence, Italy</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-renaissance-cream/20 mt-8 pt-8 text-center">
+                <p class="text-renaissance-cream/70">&copy; 2024 Renaissance Art Gallery. All rights reserved. | This is an educational website about Renaissance art.</p>
+                <p class="text-sm mt-2 text-renaissance-cream/50">All images are for demonstration purposes only. Actual Renaissance artworks are held in museums worldwide.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent -->
+    <div id="cookie-consent" class="fixed bottom-0 left-0 right-0 bg-renaissance-velvet text-renaissance-cream p-4 shadow-lg z-50 hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-4 md:mb-0 md:mr-6">
+                    <p class="text-sm">This website uses cookies to enhance your experience. By continuing to browse, you agree to our use of cookies.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <button id="cookie-accept" class="bg-renaissance-gold text-renaissance-velvet font-bold px-6 py-2 rounded-lg hover:bg-renaissance-gold/90 transition-colors duration-300">
+                        Accept
+                    </button>
+                    <button id="cookie-decline" class="bg-transparent border border-renaissance-cream text-renaissance-cream px-6 py-2 rounded-lg hover:bg-renaissance-cream/10 transition-colors duration-300">
+                        Decline
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Define data at the beginning
+        const paintings = [
+            { 
+                "id": 1, 
+                "title": "Mona Lisa", 
+                "artist": "Leonardo da Vinci", 
+                "year": "c. 1503–1506",
+                "description": "The archetypal masterpiece of the Italian Renaissance, renowned for its subject's enigmatic expression.",
+                "image": "https://picsum.photos/500/650?random=101"
+            },
+            { 
+                "id": 2, 
+                "title": "The Birth of Venus", 
+                "artist": "Sandro Botticelli", 
+                "year": "c. 1484–1486",
+                "description": "A landmark of early Renaissance, depicting the goddess Venus arriving at the shore after her birth.",
+                "image": "https://picsum.photos/500/650?random=102"
+            },
+            { 
+                "id": 3, 
+                "title": "The School of Athens", 
+                "artist": "Raphael", 
+                "year": "1509–1511",
+                "description": "A fresco representing Philosophy, featuring Plato, Aristotle, and other ancient philosophers.",
+                "image": "https://picsum.photos/500/650?random=103"
+            },
+            { 
+                "id": 4, 
+                "title": "The Last Supper", 
+                "artist": "Leonardo da Vinci", 
+                "year": "1495–1498",
+                "description": "A mural painting depicting the reaction of the Twelve Disciples when Jesus announces one will betray him.",
+                "image": "https://picsum.photos/500/650?random=104"
+            },
+            { 
+                "id": 5, 
+                "title": "Sistine Chapel Ceiling", 
+                "artist": "Michelangelo", 
+                "year": "1508–1512",
+                "description": "A cornerstone work of High Renaissance art, depicting nine scenes from the Book of Genesis.",
+                "image": "https://picsum.photos/500/650?random=105"
+            },
+            { 
+                "id": 6, 
+                "title": "The Assumption of the Virgin", 
+                "artist": "Titian", 
+                "year": "1516–1518",
+                "description": "A monumental altarpiece that established Titian as the leading painter of the Venetian school.",
+                "image": "https://picsum.photos/500/650?random=106"
+            }
+        ];
+
+        const masters = [
+            { 
+                "id": 1, 
+                "name": "Leonardo da Vinci", 
+                "lifespan": "1452–1519", 
+                "nationality": "Italian",
+                "description": "The quintessential Renaissance man, master of sfumato and anatomical precision.",
+                "innovations": ["Sfumato", "Chiaroscuro", "Anatomical Studies"],
+                "notableWorks": ["Mona Lisa", "The Last Supper", "Vitruvian Man"]
+            },
+            { 
+                "id": 2, 
+                "name": "Michelangelo", 
+                "lifespan": "1475–1564", 
+                "nationality": "Italian",
+                "description": "Master of human anatomy and dramatic composition in both sculpture and painting.",
+                "innovations": ["Terribilità", "Foreshortening", "Dynamic Composition"],
+                "notableWorks": ["Sistine Chapel", "David", "Pietà"]
+            },
+            { 
+                "id": 3, 
+                "name": "Raphael", 
+                "lifespan": "1483–1520", 
+                "nationality": "Italian",
+                "description": "Known for perfect harmony, clarity of form, and visual achievement of Neoplatonic ideal.",
+                "innovations": ["Idealized Beauty", "Harmonious Composition", "Clarity of Form"],
+                "notableWorks": ["School of Athens", "Sistine Madonna", "Transfiguration"]
+            },
+            { 
+                "id": 4, 
+                "name": "Titian", 
+                "lifespan": "c. 1488–1576", 
+                "nationality": "Venetian",
+                "description": "The greatest Venetian artist of the Renaissance, master of color and atmospheric effects.",
+                "innovations": ["Colorito", "Loose Brushwork", "Atmospheric Effects"],
+                "notableWorks": ["Assumption", "Venus of Urbino", "Bacchus and Ariadne"]
+            }
+        ];
+
+        const museums = [
+            {
+                "id": 1,
+                "name": "Uffizi Gallery",
+                "location": "Florence, Italy",
+                "description": "Home to the world's finest collection of Italian Renaissance art.",
+                "highlight": "The Birth of Venus",
+                "image": "https://picsum.photos/500/300?random=401"
+            },
+            {
+                "id": 2,
+                "name": "The Louvre",
+                "location": "Paris, France",
+                "description": "The world's largest art museum, housing Leonardo da Vinci's Mona Lisa.",
+                "highlight": "Mona Lisa",
+                "image": "https://picsum.photos/500/300?random=402"
+            },
+            {
+                "id": 3,
+                "name": "Vatican Museums",
+                "location": "Vatican City",
+                "description": "Contains Michelangelo's Sistine Chapel ceiling and Raphael's Stanze.",
+                "highlight": "Sistine Chapel",
+                "image": "https://picsum.photos/500/300?random=403"
+            }
+        ];
+
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+            
+            // Show home section by default
+            document.getElementById('home').classList.remove('hidden');
+            document.getElementById('home').classList.add('section-active');
+            
+            // Navigation click handler
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('bg-renaissance-gold/20', 'text-renaissance-gold'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('bg-renaissance-gold/20', 'text-renaissance-gold');
+                    
+                    // Get target section
+                    const targetSection = this.getAttribute('data-section');
+                    
+                    // Hide all sections
+                    sections.forEach(section => {
+                        section.classList.add('hidden');
+                        section.classList.remove('section-active');
+                    });
+                    
+                    // Show target section
+                    const targetElement = document.getElementById(targetSection);
+                    if (targetElement) {
+                        targetElement.classList.remove('hidden');
+                        targetElement.classList.add('section-active');
+                        
+                        // Add animation
+                        targetElement.classList.add('animate-fade-in');
+                        setTimeout(() => {
+                            targetElement.classList.remove('animate-fade-in');
+                        }, 1000);
+                    }
+                });
+            });
+
+            // Newsletter form submission
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    
+                    // Show success message
+                    const button = this.querySelector('button[type="submit"]');
+                    const originalText = button.textContent;
+                    button.textContent = "Subscribed!";
+                    button.classList.add('bg-green-600');
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.classList.remove('bg-green-600');
+                    }, 3000);
+                    
+                    // In a real application, you would send this to a server
+                    console.log("Newsletter subscription:", email);
+                });
+            }
+
+            // Cookie consent
+            const cookieConsent = document.getElementById('cookie-consent');
+            const cookieAccept = document.getElementById('cookie-accept');
+            const cookieDecline = document.getElementById('cookie-decline');
+            
+            // Check if cookie consent has been given
+            if (!localStorage.getItem('cookieConsent')) {
+                setTimeout(() => {
+                    cookieConsent.classList.remove('hidden');
+                }, 2000);
+            }
+            
+            if (cookieAccept) {
+                cookieAccept.addEventListener('click', function() {
+                    localStorage.setItem('cookieConsent', 'accepted');
+                    cookieConsent.classList.add('hidden');
+                });
+            }
+            
+            if (cookieDecline) {
+                cookieDecline.addEventListener('click', function() {
+                    localStorage.setItem('cookieConsent', 'declined');
+                    cookieConsent.classList.add('hidden');
+                });
+            }
+
+            // Image lazy loading enhancement
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.getAttribute('src');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+
+            // Add hover effects to painting frames
+            const paintingFrames = document.querySelectorAll('.painting-frame');
+            paintingFrames.forEach(frame => {
+                frame.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.transition = 'transform 0.5s ease';
+                });
+                
+                frame.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Initialize first nav link as active
+            if (navLinks.length > 0) {
+                navLinks[0].classList.add('bg-renaissance-gold/20', 'text-renaissance-gold');
+            }
+        });
+
+        // Function to generate painting cards
+        function generatePaintingCard(painting) {
+            return `
+                <div class="group animate-slide-up">
+                    <div class="painting-frame overflow-hidden bg-white mb-6">
+                        <img 
+                            src="${painting.image}" 
+                            alt="${painting.title} by ${painting.artist}" 
+                            class="w-full h-64 md:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-display-elegant font-semibold text-renaissance-velvet mb-2">${painting.title}</h3>
+                        <p class="text-renaissance-maroon font-medium mb-2">${painting.artist} • ${painting.year}</p>
+                        <p class="text-gray-600">${painting.description}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to generate master cards
+        function generateMasterCard(master) {
+            return `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-lift">
+                    <div class="h-48 overflow-hidden">
+                        <img 
+                            src="https://picsum.photos/400/300?random=${200 + master.id}" 
+                            alt="${master.name} portrait" 
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-velvet mb-2">${master.name}</h3>
+                        <p class="text-renaissance-gold font-medium mb-3">${master.lifespan} • ${master.nationality}</p>
+                        <p class="text-gray-600 mb-4">${master.description}</p>
+                        <div class="text-sm text-gray-500">
+                            <p class="mb-1"><i class="fas fa-palette text-renaissance-gold mr-2"></i>Notable: ${master.notableWorks.slice(0, 2).join(", ")}</p>
+                            <p><i class="fas fa-lightbulb text-renaissance-gold mr-2"></i>Innovation: ${master.innovations.slice(0, 2).join(", ")}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to generate museum cards
+        function generateMuseumCard(museum) {
+            return `
+                <div class="bg-renaissance-cream rounded-lg overflow-hidden shadow-lg hover-lift">
+                    <div class="h-48 overflow-hidden">
+                        <img 
+                            src="${museum.image}" 
+                            alt="${museum.name}" 
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-display-elegant font-bold text-renaissance-velvet mb-2">${museum.name}</h3>
+                        <p class="text-renaissance-gold font-medium mb-3">${museum.location}</p>
+                        <p class="text-gray-700 mb-4">${museum.description}</p>
+                        <div class="flex items-center text-gray-600">
+                            <i class="fas fa-star text-renaissance-gold mr-2"></i>
+                            <span class="font-medium">Must See:</span>
+                            <span class="ml-2">${museum.highlight}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

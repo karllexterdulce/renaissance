@@ -3,425 +3,210 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UPDATES - AB ELS 4-5</title>
-
+  <title>Karl's Lock-In Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            roseBrand: '#A9445E',
-            roseLight: '#F8EDEF',
-            roseSoft: '#FDF7F8',
-            borderSoft: '#E7D4D9'
-          },
-          fontFamily: {
-            serif: ['STIX Two Text', 'serif']
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
-    body {
-      font-family: 'STIX Two Text', serif;
-      scroll-behavior: smooth;
-    }
-
-    .shimmer {
-      position: relative;
-      overflow: hidden;
-      background: #ececec;
-    }
-
-    .shimmer::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      transform: translateX(-100%);
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.7),
-        transparent
-      );
-      animation: shimmer 1.4s infinite;
-    }
-
-    @keyframes shimmer {
-      100% {
-        transform: translateX(100%);
-      }
+    body { font-family: "STIX Two Text", serif; }
+    .glass {
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.7);
     }
   </style>
 </head>
+<body class="min-h-screen bg-gradient-to-br from-rose-50 via-white to-purple-50 text-gray-800">
 
-<body class="bg-[#FAF6F7] text-gray-900">
+  <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
 
-  <!-- Skeleton Loader -->
-  <div id="loader" class="min-h-screen p-6 space-y-4">
-    <div class="h-24 rounded-3xl shimmer"></div>
-    <div class="h-72 rounded-3xl shimmer"></div>
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="h-32 rounded-2xl shimmer"></div>
-      <div class="h-32 rounded-2xl shimmer"></div>
-      <div class="h-32 rounded-2xl shimmer"></div>
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <p class="text-sm uppercase tracking-[0.3em] text-rose-500 font-semibold">LOCK-IN SEMESTER</p>
+      <h1 class="text-3xl sm:text-4xl font-bold mt-2">Karl's Daily Dashboard</h1>
+      <p class="text-gray-600 mt-2">One disciplined day at a time 🌱</p>
     </div>
-    <div class="h-72 rounded-3xl shimmer"></div>
-  </div>
 
-  <!-- App -->
-  <div id="app" class="hidden min-h-screen lg:flex">
+    <!-- Quote -->
+    <div class="glass rounded-3xl border border-white/60 p-5 mb-6 shadow-sm">
+      <p id="quote" class="text-center italic text-lg"></p>
+    </div>
 
-    <!-- Sidebar -->
-    <aside class="hidden lg:flex lg:w-64 bg-white border-r border-borderSoft flex-col">
-      <div class="p-6 border-b border-borderSoft">
-        <h1 class="text-2xl font-bold text-roseBrand">UPDATES</h1>
-        <p class="text-sm text-gray-500">AB ELS 4-5</p>
+    <!-- Progress -->
+    <div class="glass rounded-3xl border border-white/60 p-5 mb-6 shadow-sm">
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="font-semibold text-lg">Today's Progress</h2>
+        <span id="progressText" class="font-bold text-rose-600">0 / 6</span>
+      </div>
+      <div class="w-full bg-rose-100 rounded-full h-3 overflow-hidden">
+        <div id="progressBar" class="h-full bg-gradient-to-r from-rose-400 to-purple-400 rounded-full transition-all duration-500" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+
+      <!-- Checklist -->
+      <div class="glass rounded-3xl border border-white/60 p-5 shadow-sm">
+        <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">✅ Daily Lock-In</h2>
+        <div class="space-y-3">
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="task h-5 w-5 accent-rose-500" data-key="exercise">
+            <span>Exercise / lift</span>
+          </label>
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="task h-5 w-5 accent-rose-500" data-key="french">
+            <span>French study</span>
+          </label>
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="task h-5 w-5 accent-rose-500" data-key="portfolio">
+            <span>Portfolio work</span>
+          </label>
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="task h-5 w-5 accent-rose-500" data-key="creative">
+            <span>Creative Director task</span>
+          </label>
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="task h-5 w-5 accent-rose-500" data-key="diary">
+            <span>French diary</span>
+          </label>
+          <label class="flex items-center gap-3">
+            <input type="checkbox" class="task h-5 w-5 accent-rose-500" data-key="sleep">
+            <span>Sleep before midnight</span>
+          </label>
+        </div>
       </div>
 
-      <nav class="p-4 space-y-1 text-sm">
-        <a class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl bg-roseLight text-roseBrand font-semibold" href="#top">Home</a>
-        <a class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-roseSoft text-gray-700" href="#announcements">Announcements</a>
-        <a class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-roseSoft text-gray-700" href="#schedule">Schedule</a>
-        <a class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-roseSoft text-gray-700" href="#todo">To-Do List</a>
-        <a class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-roseSoft text-gray-700" href="#events">Upcoming Events</a>
-      </nav>
-    </aside>
-
-    <!-- Main -->
-    <main id="top" class="flex-1 p-4 lg:p-8 max-w-7xl mx-auto w-full pb-24">
-
-      <!-- Header Banner -->
-      <section class="bg-gradient-to-r from-[#F8EDEF] via-[#F6E7EA] to-[#F9F1F3] border border-borderSoft rounded-[2rem] p-6 lg:p-8 mb-6">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <div>
-            <h2 class="text-3xl lg:text-4xl font-bold text-roseBrand">Hello there!</h2>
-            <p class="text-lg text-gray-700 mt-1">Here’s what’s new and what’s next</p>
-          </div>
+      <!-- Top priorities -->
+      <div class="glass rounded-3xl border border-white/60 p-5 shadow-sm">
+        <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">🎯 Top 3 Priorities</h2>
+        <div class="space-y-3">
+          <input id="p1" type="text" placeholder="Priority #1" class="w-full rounded-xl border border-rose-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-300">
+          <input id="p2" type="text" placeholder="Priority #2" class="w-full rounded-xl border border-rose-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-300">
+          <input id="p3" type="text" placeholder="Priority #3" class="w-full rounded-xl border border-rose-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-300">
         </div>
-      </section>
+      </div>
 
-      <!-- Announcement -->
-      <section id="announcements" class="bg-white rounded-[2rem] border border-borderSoft p-6 lg:p-8 shadow-sm mb-6">
-        <div class="flex items-center justify-between flex-wrap gap-3 mb-6">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-xl bg-roseLight flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-roseBrand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2c0 .5-.2 1-.6 1.4L4 17h5m6 0a3 3 0 11-6 0m6 0H9"/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold uppercase text-roseBrand">Main Announcement</h3>
-          </div>
-          <span id="phTime" class="text-sm text-gray-500"></span>
+      <!-- Job tracker -->
+      <div class="glass rounded-3xl border border-white/60 p-5 shadow-sm lg:col-span-2">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold flex items-center gap-2">💼 Job Applications</h2>
+          <button id="addJob" class="rounded-xl bg-rose-500 text-white px-4 py-2 hover:bg-rose-600 transition">+ Add</button>
         </div>
+        <div id="jobList" class="space-y-2"></div>
+      </div>
 
-        <h4 class="text-3xl lg:text-4xl font-bold leading-tight mb-4">
-          WE HAVE NO CLASSES TODAY!
-        </h4>
+      <!-- French diary -->
+      <div class="glass rounded-3xl border border-white/60 p-5 shadow-sm lg:col-span-2">
+        <h2 class="text-xl font-semibold mb-4 flex items-center gap-2">🇫🇷 French Diary</h2>
+        <textarea id="diaryText" rows="8" placeholder="Aujourd'hui, j'ai commencé à changer ma routine..." class="w-full rounded-2xl border border-rose-200 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none"></textarea>
+      </div>
 
-        <p class="text-lg leading-8 text-gray-800">
-          Take this time to catch up on your tasks and prepare for the week ahead.
-          Stay productive, everyone!
-        </p>
-      </section>
+    </div>
 
-      <!-- Quick Links -->
-      <section class="bg-white rounded-[2rem] border border-borderSoft p-5 lg:p-6 shadow-sm mb-6">
-        <div class="mb-5">
-          <h3 class="text-2xl font-bold text-roseBrand">Quick Links</h3>
-          <p class="text-sm text-gray-500">Links are added directly in index.html on GitHub.</p>
-        </div>
+    <!-- Footer -->
+    <div class="text-center mt-8 text-sm text-gray-500">
+      Built by Karl ✨ • Saved locally on this device
+    </div>
 
-        <!--
-          To add a link, add a card like this inside the grid below:
-
-          <a href="https://example.com" target="_blank"
-             class="flex flex-col gap-2 p-4 rounded-2xl border border-borderSoft hover:bg-roseSoft text-sm">
-            <div class="w-10 h-10 rounded-xl bg-roseLight flex items-center justify-center text-roseBrand font-bold">🔗</div>
-            <span class="font-medium">Link name</span>
-          </a>
-        -->
-        <div id="quickLinks" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
-          <!-- Quick link cards go here -->
-        </div>
-      </section>
-
-      <!-- Weekly Schedule -->
-      <section id="schedule" class="bg-white rounded-[2rem] border border-borderSoft p-6 lg:p-8 shadow-sm mb-6">
-        <div class="flex items-center justify-between mb-5">
-          <div>
-            <h3 class="text-2xl font-bold text-roseBrand">Weekly Schedule</h3>
-            <p class="text-sm text-gray-500">Tentative schedule — click any subject or time to edit it.</p>
-          </div>
-          <span class="text-xs px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 font-semibold">
-            Tentative
-          </span>
-        </div>
-
-        <div class="overflow-x-auto">
-          <div class="grid grid-cols-7 gap-3 min-w-[900px]">
-            <div class="text-center font-semibold text-gray-600 py-2">Sun</div>
-            <div class="text-center font-semibold text-gray-600 py-2">Mon</div>
-            <div class="text-center font-semibold text-gray-600 py-2">Tue</div>
-            <div class="text-center font-semibold text-gray-600 py-2">Wed</div>
-            <div class="text-center font-semibold text-gray-600 py-2">Thu</div>
-            <div class="text-center font-semibold text-gray-600 py-2">Fri</div>
-            <div class="text-center font-semibold text-gray-600 py-2">Sat</div>
-
-            <div class="min-h-[220px] rounded-2xl border border-borderSoft p-3 bg-roseSoft/40"></div>
-            <div class="min-h-[220px] rounded-2xl border border-borderSoft p-3 bg-roseSoft/40"></div>
-            <div class="min-h-[220px] rounded-2xl border border-borderSoft p-3 bg-roseSoft/40"></div>
-
-            <div class="min-h-[220px] rounded-2xl border border-borderSoft p-3 bg-roseSoft space-y-3">
-              <div class="rounded-xl bg-white border border-borderSoft p-3">
-                <p class="text-xs font-semibold text-roseBrand">ENGL 401</p>
-                <p contenteditable="true" class="font-medium mt-1 focus:outline-none">
-                  Special Topics in English Across Professions
-                </p>
-                <p contenteditable="true" class="text-sm text-gray-600 mt-2 focus:outline-none">
-                  01:30 PM – 04:30 PM
-                </p>
-              </div>
-
-              <div class="rounded-xl bg-white border border-borderSoft p-3">
-                <p class="text-xs font-semibold text-roseBrand">ENGL 402</p>
-                <p contenteditable="true" class="font-medium mt-1 focus:outline-none">
-                  Practicum 1: On-Campus Practicum
-                </p>
-                <p contenteditable="true" class="text-sm text-gray-600 mt-2 focus:outline-none">
-                  04:30 PM – 07:30 PM
-                </p>
-              </div>
-            </div>
-
-            <div class="min-h-[220px] rounded-2xl border border-borderSoft p-3 bg-roseSoft/40"></div>
-            <div class="min-h-[220px] rounded-2xl border border-borderSoft p-3 bg-roseSoft/40"></div>
-
-            <div class="min-h-[220px] rounded-2xl border border-borderSoft p-3 bg-roseSoft space-y-3">
-              <div class="rounded-xl bg-white border border-borderSoft p-3">
-                <p class="text-xs font-semibold text-roseBrand">ENGL 453</p>
-                <p contenteditable="true" class="font-medium mt-1 focus:outline-none">
-                  Registers in English
-                </p>
-                <p contenteditable="true" class="text-sm text-gray-600 mt-2 focus:outline-none">
-                  10:30 AM – 01:30 PM
-                </p>
-              </div>
-
-              <div class="rounded-xl bg-white border border-borderSoft p-3">
-                <p class="text-xs font-semibold text-roseBrand">ENGL 451</p>
-                <p contenteditable="true" class="font-medium mt-1 focus:outline-none">
-                  Instructional Materials Development and Evaluation
-                </p>
-                <p contenteditable="true" class="text-sm text-gray-600 mt-2 focus:outline-none">
-                  02:00 PM – 04:00 PM
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- To-Do List -->
-      <section id="todo" class="bg-white rounded-[2rem] border border-borderSoft p-6 lg:p-8 shadow-sm mb-6">
-        <div class="flex items-center justify-between mb-5">
-          <div>
-            <h3 class="text-2xl font-bold text-roseBrand">To-Do List</h3>
-            <p class="text-sm text-gray-500">Deadlines automatically follow Philippine time.</p>
-          </div>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="min-w-full text-sm border-separate border-spacing-y-3">
-            <thead>
-              <tr class="text-left text-gray-600">
-                <th class="px-4 py-2">Course</th>
-                <th class="px-4 py-2">What to do</th>
-                <th class="px-4 py-2">Deadline</th>
-                <th class="px-4 py-2">Status</th>
-              </tr>
-            </thead>
-            <tbody id="todoBody">
-              <tr class="bg-white border border-borderSoft rounded-2xl">
-                <td class="px-4 py-4 align-top">
-                  ENGL 401 – Special Topics in English Across Professions
-                </td>
-                <td class="px-4 py-4 align-top">
-                  Submit reflection paper.
-                </td>
-                <td class="px-4 py-4 align-top deadline-cell" data-deadline="2026-08-08T23:59:00">
-                  Aug 8, 2026 · 11:59 PM
-                </td>
-                <td class="px-4 py-4 align-top status-cell font-semibold"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- Upcoming Events -->
-      <section id="events" class="bg-white rounded-[2rem] border border-borderSoft p-6 lg:p-8 shadow-sm mb-16">
-        <div class="flex items-center justify-between mb-5">
-          <div>
-            <h3 class="text-2xl font-bold text-roseBrand">Upcoming Events</h3>
-            <p class="text-sm text-gray-500">Events and presentations can be listed here.</p>
-          </div>
-        </div>
-
-        <div class="space-y-4">
-          <div class="rounded-2xl border border-borderSoft p-4 bg-roseSoft">
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p class="text-sm font-semibold text-roseBrand">ENGL 451</p>
-                <h4 class="text-lg font-bold">Instructional Materials Presentation</h4>
-                <p class="text-gray-600 mt-1">Final presentation of instructional materials.</p>
-              </div>
-              <div class="text-right">
-                <p class="font-semibold">Aug 15, 2026</p>
-                <p class="text-sm text-gray-500">2:00 PM</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
   </div>
 
   <script>
-    // Loader
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-        document.getElementById('app').classList.remove('hidden');
-      }, 800);
+    const quotes = [
+      "Discipline is remembering what you want.",
+      "Small consistent actions create extraordinary results.",
+      "You do not need to be perfect; you need to keep showing up.",
+      "Water the version of yourself you want to become.",
+      "A seed grows in silence before it blooms."
+    ];
+
+    document.getElementById('quote').textContent =
+      quotes[Math.floor(Math.random() * quotes.length)];
+
+    const tasks = document.querySelectorAll('.task');
+
+    function updateProgress() {
+      const checked = document.querySelectorAll('.task:checked').length;
+      const total = tasks.length;
+      const percent = (checked / total) * 100;
+
+      document.getElementById('progressText').textContent = `${checked} / ${total}`;
+      document.getElementById('progressBar').style.width = percent + '%';
+
+      localStorage.setItem('lockin_progress', JSON.stringify(
+        [...tasks].reduce((acc, t) => {
+          acc[t.dataset.key] = t.checked;
+          return acc;
+        }, {})
+      ));
+    }
+
+    const savedTasks = JSON.parse(localStorage.getItem('lockin_progress') || '{}');
+    tasks.forEach(t => {
+      if (savedTasks[t.dataset.key]) t.checked = true;
+      t.addEventListener('change', updateProgress);
+    });
+    updateProgress();
+
+    // Save priorities
+    ['p1','p2','p3'].forEach(id => {
+      const el = document.getElementById(id);
+      el.value = localStorage.getItem(id) || '';
+      el.addEventListener('input', () => localStorage.setItem(id, el.value));
     });
 
-    // Philippine Time
-    function updatePHTime() {
-      const now = new Date();
+    // Diary save
+    const diary = document.getElementById('diaryText');
+    diary.value = localStorage.getItem('diaryText') || '';
+    diary.addEventListener('input', () => localStorage.setItem('diaryText', diary.value));
 
-      const options = {
-        timeZone: 'Asia/Manila',
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: '2-digit'
-      };
+    // Job tracker
+    const jobList = document.getElementById('jobList');
+    const addJobBtn = document.getElementById('addJob');
 
-      document.getElementById('phTime').textContent =
-        new Intl.DateTimeFormat('en-PH', options).format(now);
-    }
+    function renderJobs() {
+      const jobs = JSON.parse(localStorage.getItem('jobs') || '[]');
+      jobList.innerHTML = '';
 
-    updatePHTime();
-    setInterval(updatePHTime, 60000);
-
-    // To-Do deadline colors
-    function updateDeadlineColors() {
-      const now = new Date();
-
-      document.querySelectorAll('.deadline-cell').forEach(cell => {
-        const deadline = new Date(cell.dataset.deadline);
-        const statusCell = cell.parentElement.querySelector('.status-cell');
-
-        const diffMs = deadline - now;
-        const diffHours = diffMs / (1000 * 60 * 60);
-
-        cell.classList.remove(
-          'bg-green-100','text-green-800',
-          'bg-yellow-100','text-yellow-800',
-          'bg-red-100','text-red-800'
-        );
-
-        if (diffMs <= 0) {
-          cell.classList.add('bg-red-100','text-red-800');
-          statusCell.textContent = 'TASK IS OVERDUE';
-          statusCell.className = 'px-4 py-4 align-top status-cell font-semibold text-red-700';
-        } else if (diffHours <= 4.9833) {
-          cell.classList.add('bg-red-100','text-red-800');
-          statusCell.textContent = 'Urgent';
-          statusCell.className = 'px-4 py-4 align-top status-cell font-semibold text-red-700';
-        } else if (diffHours <= 24) {
-          cell.classList.add('bg-yellow-100','text-yellow-800');
-          statusCell.textContent = 'Due soon';
-          statusCell.className = 'px-4 py-4 align-top status-cell font-semibold text-yellow-700';
-        } else {
-          cell.classList.add('bg-green-100','text-green-800');
-          statusCell.textContent = 'On track';
-          statusCell.className = 'px-4 py-4 align-top status-cell font-semibold text-green-700';
-        }
-      });
-    }
-
-    updateDeadlineColors();
-    setInterval(updateDeadlineColors, 60000);
-
-    // ---- Single-page navigation with "social media" style back button ----
-    // Behavior: Home is the base history entry. The FIRST time you leave Home,
-    // one entry is pushed on top of it. Jumping between other sections after
-    // that just replaces that same entry (no stacking). So no matter how many
-    // sections you visit, pressing Back always returns straight to Home.
-    let atHome = true;
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function scrollToSection(target) {
-      const el = document.querySelector(target);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (jobs.length === 0) {
+        jobList.innerHTML = '<p class="text-gray-500 text-sm">No applications yet.</p>';
+        return;
       }
-    }
 
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = this.getAttribute('href');
+      jobs.forEach((job, index) => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center gap-2 bg-white/70 border border-rose-100 rounded-xl p-3';
 
-        if (target === '#top') {
-          scrollToTop();
-          if (!atHome) {
-            // Collapse back to the Home entry instead of pushing a new one.
-            history.replaceState({ home: true }, '', location.pathname);
-            atHome = true;
-          }
-        } else {
-          scrollToSection(target);
-          if (atHome) {
-            // Leaving Home for the first time: push exactly one entry.
-            history.pushState({ home: false }, '', target);
-            atHome = false;
-          } else {
-            // Already away from Home: reuse the existing entry.
-            history.replaceState({ home: false }, '', target);
-          }
-        }
+        row.innerHTML = `
+          <input value="${job}" class="flex-1 bg-transparent outline-none" />
+          <button class="text-red-500 hover:text-red-700">✕</button>
+        `;
+
+        const input = row.querySelector('input');
+        const del = row.querySelector('button');
+
+        input.addEventListener('input', () => {
+          jobs[index] = input.value;
+          localStorage.setItem('jobs', JSON.stringify(jobs));
+        });
+
+        del.addEventListener('click', () => {
+          jobs.splice(index, 1);
+          localStorage.setItem('jobs', JSON.stringify(jobs));
+          renderJobs();
+        });
+
+        jobList.appendChild(row);
       });
-    });
-
-    // Pressing the browser/device Back button always returns to Home.
-    window.addEventListener('popstate', () => {
-      atHome = true;
-      scrollToTop();
-    });
-
-    // Normalize the starting URL so a stray hash doesn't confuse the history stack.
-    if (location.hash) {
-      history.replaceState({ home: true }, '', location.pathname);
-    } else {
-      history.replaceState({ home: true }, '', location.pathname);
     }
+
+    addJobBtn.addEventListener('click', () => {
+      const jobs = JSON.parse(localStorage.getItem('jobs') || '[]');
+      jobs.push('New application');
+      localStorage.setItem('jobs', JSON.stringify(jobs));
+      renderJobs();
+    });
+
+    renderJobs();
   </script>
 
 </body>

@@ -285,7 +285,7 @@ function renderArchive() {
       <div class="entry-content whitespace-pre-wrap leading-relaxed">${entry.text}</div>
     `;
 
-    // Delete
+    // Delete entry
     card.querySelector('.delete-entry').addEventListener('click', () => {
       const updated = getDiaryArchive();
       updated.splice(actualIndex, 1);
@@ -293,7 +293,7 @@ function renderArchive() {
       renderArchive();
     });
 
-    // Edit
+    // Edit entry
     card.querySelector('.edit-entry').addEventListener('click', () => {
       const contentDiv = card.querySelector('.entry-content');
       const oldText = entries[actualIndex].text;
@@ -320,14 +320,12 @@ function renderArchive() {
       });
     });
 
-// Initial render
-renderArchive();
-
     archiveList.appendChild(card);
   });
 }
 
-saveDiaryBtn.addEventListener('click', () => {
+// ENTER button → move diary entry to archive
+enterDiaryBtn.addEventListener('click', () => {
   const text = diary.value.trim();
 
   if (!text) {
@@ -336,6 +334,7 @@ saveDiaryBtn.addEventListener('click', () => {
   }
 
   const now = new Date();
+
   const date = now.toLocaleDateString('en-PH', {
     year: 'numeric',
     month: 'long',
@@ -348,18 +347,25 @@ saveDiaryBtn.addEventListener('click', () => {
   });
 
   const entries = getDiaryArchive();
-  entries.push({ date, time, text });
+
+  entries.push({
+    date,
+    time,
+    text
+  });
 
   saveDiaryArchive(entries);
 
+  // Clear current entry
   diary.value = '';
   localStorage.removeItem('diaryDraft');
 
   renderArchive();
 
-  alert('Diary entry saved 🌙📚');
+  alert('Diary entry archived 🌙📚');
 });
 
+// Clear all archive
 clearArchiveBtn.addEventListener('click', () => {
   if (confirm('Delete all diary entries? This cannot be undone.')) {
     localStorage.removeItem('diaryArchive');
@@ -367,6 +373,7 @@ clearArchiveBtn.addEventListener('click', () => {
   }
 });
 
+// Initial render
 renderArchive();
 
     // Job tracker

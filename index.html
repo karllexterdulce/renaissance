@@ -78,7 +78,7 @@
 <div class="glass rounded-3xl border border-white/60 p-5 shadow-sm lg:col-span-2">
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
     <h2 class="text-xl font-semibold flex items-center gap-2">🇫🇷 French Diary</h2>
-    <Button id="saveDiary" label="Save Today’s Entry" iconStart="save" block color="info" />
+<Button id="enterDiary" label="Enter" iconStart="send" block color="success" />
   </div>
 
   <textarea
@@ -228,13 +228,13 @@ renderTasks();
       el.addEventListener('input', () => localStorage.setItem(id, el.value));
     });
 
-// Diary with archive
+// French Diary with Enter + Edit + Archive
 const diary = document.getElementById('diaryText');
-const saveDiaryBtn = document.getElementById('saveDiary');
+const enterDiaryBtn = document.getElementById('enterDiary');
 const archiveList = document.getElementById('archiveList');
 const clearArchiveBtn = document.getElementById('clearArchive');
 
-// Draft autosave
+// Autosave draft while typing
 diary.value = localStorage.getItem('diaryDraft') || '';
 diary.addEventListener('input', () => {
   localStorage.setItem('diaryDraft', diary.value);
@@ -268,19 +268,107 @@ function renderArchive() {
       <div class="flex items-start justify-between gap-3 mb-2">
         <div>
           <p class="font-semibold text-rose-700">${entry.date}</p>
-          <p class="text-xs text-gray-500">Saved at ${entry.time}</p>
+          <p class="text-xs text-gray-500">${entry.time}</p>
         </div>
-        <button class="delete-entry text-red-500 hover:text-red-700 text-sm">Delete</button>
+        <div class="flex gap-2">
+          <button class="edit-entry text-blue-600 hover:text-blue-800 text-sm">Edit</button>
+          <button class="delete-entry text-red-500 hover:text-red-700 text-sm">Delete</button>
+        </div>
       </div>
-      <p class="whitespace-pre-wrap leading-relaxed">${entry.text}</p>
+
+      <div class="entry-content whitespace-pre-wrap leading-relaxed">${entry.text}</div>
     `;
 
+    // Delete
     card.querySelector('.delete-entry').addEventListener('click', () => {
       const updated = getDiaryArchive();
       updated.splice(actualIndex, 1);
       saveDiaryArchive(updated);
       renderArchive();
     });
+
+    // Edit
+    card.querySelector('.edit-entry').addEventListener('click', () => {
+      const contentDiv = card.querySelector('.entry-content');
+      const oldText = entries[actualIndex].text;
+
+      contentDiv.innerHTML = `
+        <textarea class="w-full rounded-xl border border-rose-200 p-3 focus:outline-none focus:ring-2 focus:ring-rose-300" rows="6">${oldText}</textarea>
+        <div class="flex gap-2 mt-2">
+          <button class="save-edit px-3 py-1 rounded-lg bg-green-500 text-white text-sm hover:bg-green-600">Save</button>
+          <button class="cancel-edit px-3 py-1 rounded-lg bg-gray-200 text-sm hover:bg-gray-300">Cancel</button>
+        </div>
+      `;
+
+      const textarea = contentDiv.querySelector('textarea');
+
+      contentDiv.querySelector('.save-edit').addEventListener('click', () => {
+        const updated = getDiaryArchive();
+        updated[actualIndex].text = textarea.value.trim() || oldText;
+        saveDiaryArchive(updated);
+        renderArchive();
+      });
+
+      contentDiv.querySelector('.cancel-edit').addEventListener('click', () => {
+        renderArchive();
+      });
+    });
+
+    archiveList.appendChild(card);
+  });
+}
+
+// ENTER button: move current entry into archive
+enterDiaryBtn.addEventListener('click', () => {
+  const text = diary.value.trim();
+
+  if (!text) {
+    alert('Write something in your diary first 💜');
+    return;
+  }
+
+  const now = new Date();
+
+  const date = now.toLocaleDateString('en-PH', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  const time = now.toLocaleTimeString('en-PH', {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+
+  const entries = getDiaryArchive();
+
+  entries.push({
+    date,
+    time,
+    text
+  });
+
+  saveDiaryArchive(entries);
+
+  // Clear current entry
+  diary.value = '';
+  localStorage.removeItem('diaryDraft');
+
+  renderArchive();
+
+  alert('Diary entry archived 🌙📚');
+});
+
+// Clear all archive
+clearArchiveBtn.addEventListener('click', () => {
+  if (confirm('Delete all diary entries? This cannot be undone.')) {
+    localStorage.removeItem('diaryArchive');
+    renderArchive();
+  }
+});
+
+// Initial render
+renderArchive();
 
     archiveList.appendChild(card);
   });

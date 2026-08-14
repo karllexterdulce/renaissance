@@ -1,0 +1,371 @@
+/* =========================
+   RICK & MORTY PORTAL THEME
+   for Karl's Lock-In Dashboard
+   ========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=STIX+Two+Text:wght@400;500;600;700&display=swap');
+
+:root{
+  --portal-green:#7CFF00;
+  --portal-green-2:#39FF14;
+  --portal-dark:#0b1020;
+  --portal-card:#121a2f;
+  --portal-card-2:#17223f;
+  --cyan:#67e8f9;
+  --cyan-glow:#22d3ee;
+  --text:#e6f7ff;
+  --muted:#9fb6c8;
+  --pink:#ff6bd6;
+  --danger:#ff5c8a;
+}
+
+/* Base */
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'STIX Two Text', serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(124,255,0,.18) 0, transparent 20%),
+    radial-gradient(circle at 80% 10%, rgba(34,211,238,.16) 0, transparent 18%),
+    radial-gradient(circle at 50% 80%, rgba(255,107,214,.10) 0, transparent 22%),
+    linear-gradient(135deg, #05070f 0%, #0b1020 45%, #111827 100%);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* Floating portal particles */
+body::before,
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+}
+
+body::before{
+  background-image:
+    radial-gradient(circle, rgba(124,255,0,.55) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(34,211,238,.35) 0 2px, transparent 3px),
+    radial-gradient(circle, rgba(255,255,255,.18) 0 1px, transparent 2px);
+  background-size: 180px 180px, 260px 260px, 120px 120px;
+  animation: drift 28s linear infinite;
+}
+
+body::after{
+  background-image:
+    radial-gradient(circle at center, rgba(124,255,0,.10) 0 40%, transparent 55%);
+  background-size: 520px 520px;
+  background-position: center;
+  mix-blend-mode:screen;
+  animation: pulsePortal 8s ease-in-out infinite;
+}
+
+@keyframes drift{
+  from{ transform:translateY(0); }
+  to{ transform:translateY(-180px); }
+}
+
+@keyframes pulsePortal{
+  0%,100%{ opacity:.35; transform:scale(1); }
+  50%{ opacity:.55; transform:scale(1.08); }
+}
+
+/* Main container */
+.max-w-4xl{
+  position:relative;
+}
+
+/* Header */
+.text-center h1{
+  font-family:'Orbitron', sans-serif;
+  color:var(--portal-green);
+  text-shadow:
+    0 0 6px rgba(124,255,0,.9),
+    0 0 18px rgba(124,255,0,.7),
+    0 0 34px rgba(57,255,20,.45);
+  letter-spacing:.06em;
+}
+
+.text-center p{
+  color:var(--muted);
+}
+
+.text-center p:first-child{
+  color:var(--cyan);
+  font-family:'Orbitron', sans-serif;
+  letter-spacing:.28em;
+}
+
+/* Portal glass cards */
+.glass{
+  position:relative;
+  background:linear-gradient(180deg, rgba(18,26,47,.88), rgba(23,34,63,.82));
+  border:1px solid rgba(124,255,0,.22);
+  border-radius:1.75rem;
+  backdrop-filter:blur(14px);
+  box-shadow:
+    0 0 0 1px rgba(124,255,0,.08) inset,
+    0 12px 40px rgba(0,0,0,.45),
+    0 0 26px rgba(124,255,0,.12);
+  overflow:hidden;
+}
+
+.glass::before{
+  content:'';
+  position:absolute;
+  inset:-2px;
+  border-radius:inherit;
+  padding:2px;
+  background:conic-gradient(
+    from 180deg,
+    rgba(124,255,0,.0),
+    rgba(124,255,0,.65),
+    rgba(34,211,238,.55),
+    rgba(124,255,0,.0)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  opacity:.55;
+  pointer-events:none;
+}
+
+.glass::after{
+  content:'🧪';
+  position:absolute;
+  top:12px;
+  right:14px;
+  font-size:1.1rem;
+  opacity:.55;
+  filter:drop-shadow(0 0 6px rgba(124,255,0,.7));
+}
+
+/* Section titles */
+h2,h3{
+  font-family:'Orbitron', sans-serif;
+  color:var(--portal-green);
+  text-shadow:0 0 10px rgba(124,255,0,.45);
+}
+
+/* Progress bar */
+#progressBar{
+  background:linear-gradient(90deg, var(--portal-green), var(--cyan));
+  box-shadow:
+    0 0 12px rgba(124,255,0,.8),
+    0 0 28px rgba(34,211,238,.45);
+}
+
+#progressText{
+  color:var(--portal-green);
+}
+
+/* Inputs */
+input[type="text"],
+textarea{
+  background:rgba(8,13,26,.88) !important;
+  color:var(--text) !important;
+  border:1px solid rgba(124,255,0,.28) !important;
+  transition:border-color .2s ease, box-shadow .2s ease, transform .15s ease;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder{
+  color:#7f97a9;
+}
+
+input[type="text"]:focus,
+textarea:focus{
+  outline:none;
+  border-color:var(--portal-green) !important;
+  box-shadow:
+    0 0 0 3px rgba(124,255,0,.14),
+    0 0 18px rgba(124,255,0,.35);
+  transform:translateY(-1px);
+}
+
+/* Checkbox glow */
+input[type="checkbox"]{
+  accent-color:var(--portal-green);
+  transform:scale(1.08);
+  filter:drop-shadow(0 0 6px rgba(124,255,0,.65));
+}
+
+/* Buttons */
+button{
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  transition:transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+button:hover{
+  transform:translateY(-1px) scale(1.01);
+}
+
+button:active{
+  transform:translateY(0) scale(.99);
+}
+
+/* Add buttons */
+#addTask,
+#addJob{
+  background:linear-gradient(135deg, #7CFF00, #39FF14) !important;
+  color:#08110a !important;
+  box-shadow:
+    0 0 16px rgba(124,255,0,.45),
+    0 6px 18px rgba(57,255,20,.18);
+}
+
+#addTask::before{
+  content:'🥒 ';
+}
+
+#addJob::before{
+  content:'🛸 ';
+}
+
+/* Enter diary button */
+#enterDiary{
+  background:linear-gradient(135deg, #22c55e, #7CFF00) !important;
+  color:#07120a !important;
+  box-shadow:
+    0 0 18px rgba(124,255,0,.5),
+    0 8px 24px rgba(57,255,20,.22);
+}
+
+#enterDiary::before{
+  content:'🌀 ';
+}
+
+/* Clear archive */
+#clearArchive{
+  background:rgba(255,92,138,.14) !important;
+  color:#ffc1d5 !important;
+  border:1px solid rgba(255,92,138,.28);
+}
+
+/* Task rows and archive cards */
+#taskList > div,
+#jobList > div,
+#archiveList > div{
+  background:linear-gradient(180deg, rgba(12,18,34,.88), rgba(18,26,47,.82)) !important;
+  border:1px solid rgba(124,255,0,.16) !important;
+  border-radius:1rem !important;
+  box-shadow:0 6px 18px rgba(0,0,0,.28);
+}
+
+/* Archive date */
+#archiveList .font-semibold{
+  color:var(--cyan) !important;
+}
+
+/* Edit/Delete links */
+.edit-entry{
+  color:#7dd3fc !important;
+}
+
+.delete-entry{
+  color:#ff9ab8 !important;
+}
+
+/* Pickle Rick sticker */
+#archiveList::after{
+  content:'🥒';
+  position:absolute;
+  right:18px;
+  bottom:12px;
+  font-size:2rem;
+  opacity:.18;
+  transform:rotate(-12deg);
+  pointer-events:none;
+}
+
+/* Quote styling */
+#quote{
+  color:#d8ffee;
+  text-shadow:0 0 12px rgba(124,255,0,.22);
+}
+
+/* Footer */
+footer,
+.text-center.mt-8{
+  color:#7f97a9 !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{
+  width:12px;
+}
+
+::-webkit-scrollbar-track{
+  background:#0b1020;
+}
+
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg, var(--portal-green), var(--cyan));
+  border-radius:999px;
+  border:2px solid #0b1020;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  filter:brightness(1.08);
+}
+
+/* Tiny portal badge on diary */
+#archiveList{
+  position:relative;
+}
+
+/* Responsive tweaks */
+@media (max-width:640px){
+  body{
+    background:
+      radial-gradient(circle at 20% 15%, rgba(124,255,0,.16) 0, transparent 18%),
+      linear-gradient(135deg, #05070f 0%, #0b1020 55%, #111827 100%);
+  }
+
+  .glass{
+    border-radius:1.5rem;
+  }
+
+  .text-center h1{
+    font-size:2rem;
+  }
+}
+
+/* Fun hover on cards */
+.glass:hover{
+  box-shadow:
+    0 0 0 1px rgba(124,255,0,.12) inset,
+    0 16px 48px rgba(0,0,0,.52),
+    0 0 34px rgba(124,255,0,.18);
+}
+
+/* Easter egg: portal ring around focused diary */
+#diaryText:focus{
+  background-image:
+    radial-gradient(circle at top right, rgba(124,255,0,.08), transparent 25%);
+}
+
+/* Rick-ish slime drip */
+.glass h2::after{
+  content:'';
+  display:block;
+  width:56px;
+  height:6px;
+  margin-top:.35rem;
+  border-radius:999px;
+  background:linear-gradient(90deg, var(--portal-green), transparent);
+  box-shadow:0 0 10px rgba(124,255,0,.55);
+}

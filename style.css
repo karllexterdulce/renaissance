@@ -156,11 +156,9 @@ body::after{
 /* Section titles */
 h2,h3{
   font-family:'Bangers', cursive;
-  color:var(--heading);
+  color:#0f172a; /* dark slate */
   letter-spacing:.04em;
-  text-shadow:
-    2px 2px 0 rgba(0,0,0,.75),
-    0 0 8px rgba(124,255,0,.18);
+  text-shadow:none;
 }
 
 /* Progress bar */
@@ -172,7 +170,8 @@ h2,h3{
 }
 
 #progressText{
-  color:var(--portal-green);
+  color:#0f172a;
+  font-weight:700;
 }
 
 /* Inputs */
@@ -298,8 +297,9 @@ button:active{
 
 /* Quote styling */
 #quote{
-  color:#f8fafc;
-  text-shadow:0 1px 2px rgba(0,0,0,.6);
+  color:#14532d; /* dark forest green */
+  text-shadow:none;
+  font-weight:600;
 }
 
 p, span, label, li, div, textarea, input{

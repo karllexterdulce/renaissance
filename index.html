@@ -49,7 +49,9 @@
 <div class="glass rounded-3xl border border-white/60 p-5 shadow-sm">
   <div class="flex items-center justify-between mb-4">
     <h2 class="text-xl font-semibold flex items-center gap-2">✅ Daily Lock-In</h2>
-    <Button id="addTask" label="Add" iconStart="plus" size="sm" block color="info" />
+    <button id="addTask" class="rounded-xl bg-rose-500 text-white px-4 py-2 hover:bg-rose-600 transition text-sm">
+  + Add
+</button>
   </div>
 
   <div id="taskList" class="space-y-3"></div>
@@ -78,7 +80,9 @@
 <div class="glass rounded-3xl border border-white/60 p-5 shadow-sm lg:col-span-2">
   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
     <h2 class="text-xl font-semibold flex items-center gap-2">🇫🇷 French Diary</h2>
-<Button id="enterDiary" label="Enter" iconStart="send" block color="success" />
+<button id="enterDiary" class="rounded-xl bg-green-500 text-white px-4 py-2 hover:bg-green-600 transition text-sm">
+  Enter
+</button>
   </div>
 
   <textarea
@@ -95,7 +99,9 @@
   <div class="mt-8">
     <div class="flex items-center justify-between mb-3">
       <h3 class="text-lg font-semibold flex items-center gap-2">📚 Diary Archive</h3>
-      <Button id="clearArchive" label="Clear All" style="secondary" color="danger" size="sm" />
+      <button id="clearArchive" class="rounded-xl bg-red-100 text-red-600 px-4 py-2 hover:bg-red-200 transition text-sm">
+  Clear All
+</button>
     </div>
 
     <div id="archiveList" class="space-y-3">
@@ -314,59 +320,6 @@ function renderArchive() {
       });
     });
 
-    archiveList.appendChild(card);
-  });
-}
-
-// ENTER button: move current entry into archive
-enterDiaryBtn.addEventListener('click', () => {
-  const text = diary.value.trim();
-
-  if (!text) {
-    alert('Write something in your diary first 💜');
-    return;
-  }
-
-  const now = new Date();
-
-  const date = now.toLocaleDateString('en-PH', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-
-  const time = now.toLocaleTimeString('en-PH', {
-    hour: '2-digit',
-    minute: '2-digit'
-  });
-
-  const entries = getDiaryArchive();
-
-  entries.push({
-    date,
-    time,
-    text
-  });
-
-  saveDiaryArchive(entries);
-
-  // Clear current entry
-  diary.value = '';
-  localStorage.removeItem('diaryDraft');
-
-  renderArchive();
-
-  alert('Diary entry archived 🌙📚');
-});
-
-// Clear all archive
-clearArchiveBtn.addEventListener('click', () => {
-  if (confirm('Delete all diary entries? This cannot be undone.')) {
-    localStorage.removeItem('diaryArchive');
-    renderArchive();
-  }
-});
-
 // Initial render
 renderArchive();
 
@@ -468,3 +421,4 @@ renderArchive();
 
 </body>
 </html>
+
